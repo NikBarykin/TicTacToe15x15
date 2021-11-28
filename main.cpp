@@ -265,6 +265,7 @@ private:
     long long evaluation_for_crosses_ = 0;
 };
 
+
 string Strip(string_view sv) {
     while (!sv.empty() && isspace(sv.front())) {
         sv.remove_prefix(1);
@@ -275,11 +276,13 @@ string Strip(string_view sv) {
     return string(sv);
 }
 
+
 string GetStrippedLine(istream& input = cin) {
     string result;
     getline(cin, result);
     return Strip(result);
 }
+
 
 template<typename MoveIt>
 void WatchReplay(MoveIt moves_begin, MoveIt moves_end) {
@@ -309,6 +312,7 @@ void WatchReplay(MoveIt moves_begin, MoveIt moves_end) {
         }
     }
 }
+
 
 void Play() {
     Board board;
@@ -372,20 +376,8 @@ row column - to make a move
     }
 }
 
-void TestWatchReplay() {
-    Board board;
-    for (int i = 0; i < 100; ++i) {
-        if (board.GetState() != Board::State::GameIsNotOver) {
-            break;
-        }
-        board.MakeMove(*board.FindBestMove().first);
-    }
-    auto moves = board.GetMovesHistory();
-    WatchReplay(begin(moves), end(moves));
-}
 
 int main() {
-    //TestWatchReplay();
     Play();
     return 0;
 }
